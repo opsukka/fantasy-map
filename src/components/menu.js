@@ -1,5 +1,6 @@
 import React from 'react';
 import '../scss/menu.scss';
+import VMap from './lmap';
 
 class SideMenu extends React.Component {
 	constructor(props) {
@@ -36,7 +37,7 @@ class SideMenu extends React.Component {
 							<img src={require('../logo.png')} className="SideMenu-logo" alt="logo" />
 						</div>
 					</div>
-					<button onClick={this.hideLeft}>hide menu</button>
+					<button onClick={this.hideLeft}>Hide menu</button>
 					<MenuItem>City A</MenuItem>
 					<MenuItem>City B</MenuItem>
 					<MenuItem>City C</MenuItem>

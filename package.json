@@ -7,7 +7,8 @@
     "build": "webpack",
     "sass": "node-sass src/index.scss dist/app.css",
     "devserver": "webpack-dev-server",
-    "packweb": "npm run build && npm run devserver"
+    "packweb": "npm run build && npm run devserver",
+    "watch": "webpack --watch"
   },
   "author": "Opsukka",
   "license": "ISC",

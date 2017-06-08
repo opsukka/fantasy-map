@@ -2,13 +2,15 @@
   position: fixed;
   top: 0;
   width: 250px;
-  height: 100%;
+  height: 50%;
+  margin: 0.5em;
+  padding: 0.5em;
   transition: transform ease-in-out 250ms;
   &.left {
     z-index: 10;
-    background: #6B1919;
+    background: #4f0000;
     left: 0;
-    transform: translateX(-250px);
+    transform: translateX(-300px);
     margin-bottom: 2em;
   }
   &.visible.left {
@@ -23,7 +25,7 @@
     box-sizing: border-box;
     color: #B0B0B0;
     &:first-of-type {
-      margin-top: 2em;
+      margin-top: 2.2em;
     }
   }
   & a:hover {
@@ -32,4 +34,18 @@
   & > button {
     width: 250px;
   }
+}
+// logo and its container
+.SideMenu {
+  text-align: center;
+}
+.SideMenu-header{
+  background-color: #8b0000;
+  height: 12em;
+  padding: 1em;
+  color: white;
+}
+.SideMenu-logo {
+  height: 200px;
+  text-align: center;
 }

@@ -1,0 +1,35 @@
+.menu > div {
+  position: fixed;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  transition: transform ease-in-out 250ms;
+  &.left {
+    z-index: 10;
+    background: #6B1919;
+    left: 0;
+    transform: translateX(-250px);
+    margin-bottom: 2em;
+  }
+  &.visible.left {
+    transform: translateX(0);
+  }
+  & a {
+    display: flex;
+    width: 100%;
+    padding: 10px 15px;
+    border-bottom: solid 1px #555;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: #B0B0B0;
+    &:first-of-type {
+      margin-top: 2em;
+    }
+  }
+  & a:hover {
+    color: #F0F0F0;
+  }
+  & > button {
+    width: 250px;
+  }
+}

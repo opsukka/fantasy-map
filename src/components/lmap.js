@@ -39,13 +39,14 @@ export default class VMap extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng]
-    const playerpos = [11, -4.5]
-    const cityPos= [20, 37.82]
+    const playerpos = [15, -4.5]
 
     const markers = [
-      { key: 'marker1', position: [1, 3], children: 'My first popup' },
-      { key: 'marker2', position: [22, 3], children: 'My second popup' },
-      { key: 'marker3', position: [3, 5], children: 'My third popup' },
+      { key: 'marker1', position: [11, -4.5], children: 'Yralo' },
+      { key: 'marker2', position: [20, 37.82], children: 'Kose' },
+      { key: 'marker4', position: [45, 21.73], children: 'Oxul' },
+      { key: 'marker5', position: [56.8, -49], children: 'Zramita' },
+      { key: 'marker6', position: [55.5, -108.65], children: 'Zayok' },
     ]
 
     return (
@@ -66,14 +67,6 @@ export default class VMap extends React.Component {
             <span>
               Players
             </span>
-          </Popup>
-        </Marker>
-        <Marker
-          position={cityPos}>
-          <Popup>
-           <span>
-            Kose
-           </span>
           </Popup>
         </Marker>
         <MyMarkersList markers={markers} />

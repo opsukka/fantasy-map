@@ -79,7 +79,7 @@ class Menu extends React.Component {
 	}
 }
 
-const MenuItem = (props) =>
-	<a href=''>{props.children}</a>;
+const MenuItem = ({markers}) =>
+	<p>{VMap.children}</p>;
 
 export default SideMenu;

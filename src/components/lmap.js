@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup, ZoomControl, PropTypes as MapPropTypes } from 'react-leaflet';
 import L from 'leaflet';
 
+import data from './markers.json';
+
 
 const MyPopupMarker = ({ children, position }) => (
   <Marker position={position}>
@@ -39,15 +41,9 @@ export default class VMap extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng]
-    const playerpos = [15, -4.5]
+    const playerpos = [15, -7.5]
 
-    const markers = [
-      { key: 'marker1', position: [11, -4.5], children: 'Yralo' },
-      { key: 'marker2', position: [20, 37.82], children: 'Kose' },
-      { key: 'marker4', position: [45, 21.73], children: 'Oxul' },
-      { key: 'marker5', position: [56.8, -49], children: 'Zramita' },
-      { key: 'marker6', position: [55.5, -108.65], children: 'Zayok' },
-    ]
+    const markers = data.markers
 
     return (
       <Map zoomControl={false} center={position} zoom={this.state.zoom} maxZoom={5} minZoom={2}>

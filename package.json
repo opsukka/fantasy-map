@@ -2,7 +2,12 @@
   "name": "fantasy-map",
   "version": "1.0.0",
   "description": "Custom map made with react",
+  "private": true,
   "main": "index.js",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/opsukka/fantasy-map"
+  },
   "scripts": {
     "build": "webpack",
     "sass": "node-sass src/index.scss dist/app.css",
@@ -13,6 +18,7 @@
   "author": "Opsukka",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.1",

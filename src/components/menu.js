@@ -1,6 +1,6 @@
 import React from 'react';
 import '../scss/menu.scss';
-import VMap from './lmap';
+import data from './markers.json';
 
 class SideMenu extends React.Component {
 	constructor(props) {
@@ -22,14 +22,20 @@ class SideMenu extends React.Component {
 	}
 
 	handleClick() {
-		if (this.state.leftVisible) {
-			this.hideLeft();
-		}
+		console.log(this);
+	}
+
+	createMarkers(markers) {
+		return markers.map(this.createMarker);
+	}
+
+	createMarker(marker) {
+		return <p onClick={handleClick}>{marker.children}</p>;
 	}
 
 	render () {
 		return (
-			<div onClick={this.handleClick}>
+			<div>
 				<button onClick={this.showLeft}>Menu</button>
  				<Menu ref="left" alignment="left">
 					<div className="SideMenu">
@@ -37,10 +43,10 @@ class SideMenu extends React.Component {
 							<img src={require('../logo.png')} className="SideMenu-logo" alt="logo" />
 						</div>
 					</div>
-					<button onClick={this.hideLeft}>Hide menu</button>
-					<MenuItem>City A</MenuItem>
-					<MenuItem>City B</MenuItem>
-					<MenuItem>City C</MenuItem>
+					<button onClick={this.hideLeft}>hide menu</button>
+						<div onClick={this.handleClick}>
+							{this.createMarkers(data.markers)}
+						</div>
 				</Menu>
 			</div>
 		);
@@ -78,8 +84,5 @@ class Menu extends React.Component {
 		);
 	}
 }
-
-const MenuItem = ({markers}) =>
-	<p>{VMap.children}</p>;
 
 export default SideMenu;

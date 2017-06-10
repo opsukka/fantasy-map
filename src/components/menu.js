@@ -30,7 +30,11 @@ class SideMenu extends React.Component {
 	}
 
 	createMarker(marker) {
-		return <p onClick={handleClick}>{marker.children}</p>;
+		return <p>{marker.children}</p>;
+	}
+
+	movePos() {
+
 	}
 
 	render () {

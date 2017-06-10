@@ -1,6 +1,7 @@
 import React from 'react';
 import '../scss/menu.scss';
 import data from './markers.json';
+import VMap from './lmap'
 
 class SideMenu extends React.Component {
 	constructor(props) {
@@ -9,6 +10,11 @@ class SideMenu extends React.Component {
 		this.showLeft = this.showLeft.bind(this);
 		this.hideLeft = this.hideLeft.bind(this);
 		this.handleClick = this.handleClick.bind(this);
+		this.createMarker = this.createMarker.bind(this);
+		this.createMarkers = this.createMarkers.bind(this);
+		this.state = {
+      position: [0, 0],
+    }
 	}
 
 	showLeft() {
@@ -22,19 +28,18 @@ class SideMenu extends React.Component {
 	}
 
 	handleClick() {
+		this.setState({ position : [50, 50] })
+		console.log(this.state.position);
 		console.log(this);
 	}
 
 	createMarkers(markers) {
-		return markers.map(this.createMarker);
+		return (
+			markers.map(this.createMarker));
 	}
 
 	createMarker(marker) {
-		return <p>{marker.children}</p>;
-	}
-
-	movePos() {
-
+		return <a href="#" onClick={this.handleClick}>{marker.children}</a>;
 	}
 
 	render () {
@@ -48,10 +53,11 @@ class SideMenu extends React.Component {
 						</div>
 					</div>
 					<button onClick={this.hideLeft}>hide menu</button>
-						<div onClick={this.handleClick}>
+						<div>
 							{this.createMarkers(data.markers)}
 						</div>
 				</Menu>
+				<VMap position={this.state.position} />
 			</div>
 		);
 	}

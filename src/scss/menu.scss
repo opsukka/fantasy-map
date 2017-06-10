@@ -15,7 +15,7 @@
   &.visible.left {
     transform: translateX(0);
   }
-  & p {
+  & a {
     display: flex;
     width: 100%;
     padding: 10px 15px;
@@ -27,7 +27,7 @@
       margin-top: 2.2em;
     }
   }
-  & p:hover {
+  & a:hover {
     color: #F0F0F0;
   }
   & > button {

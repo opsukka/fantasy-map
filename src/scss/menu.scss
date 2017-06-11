@@ -23,15 +23,20 @@
     text-decoration: none;
     box-sizing: border-box;
     color: #B0B0B0;
-    &:first-of-type {
-      margin-top: 2.2em;
-    }
   }
   & a:hover {
     color: #F0F0F0;
   }
   & > button {
     width: 250px;
+  }
+  > .full-menu {
+    margin-top: 2.2em;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    width: 250px;
+    height: 61%;
   }
 }
 // logo and its container

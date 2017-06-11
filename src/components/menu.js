@@ -1,7 +1,8 @@
 import React from 'react';
 import '../scss/menu.scss';
 import data from './markers.json';
-import VMap from './lmap'
+import VMap from './lmap';
+import Menu, { SubMenu, Item as MenuItem } from 'rc-menu';
 
 class SideMenu extends React.Component {
 	constructor(props) {
@@ -27,43 +28,54 @@ class SideMenu extends React.Component {
 		this.setState({ leftVisible: false });
 	}
 
-	handleClick() {
-		this.setState({ position : [50, 50] })
+	handleClick(pos) {
+		this.setState({ position : [40, 40] })
 		console.log(this.state.position);
 		console.log(this);
 	}
 
 	createMarkers(markers) {
 		return (
-			markers.map(this.createMarker));
+			markers.map(this.createMarker)
+		);
 	}
 
 	createMarker(marker) {
-		return <a href="#" onClick={this.handleClick}>{marker.children}</a>;
+		return (
+			<div className="menu-part" onClick={() => this.setState({ position : marker.position })}>
+				<Menu mode="inline">
+					<SubMenu className="submenu-title" key="1" title={marker.children}>
+						<MenuItem title="info1"><p className="menu-p">{marker.info1}</p></MenuItem>
+						<MenuItem title="info2"><p className="menu-p">{marker.info2}</p></MenuItem>
+					</SubMenu>
+				</Menu>
+			</div>
+		);
 	}
+
 
 	render () {
 		return (
 			<div>
 				<button onClick={this.showLeft}>Menu</button>
- 				<Menu ref="left" alignment="left">
+ 				<Menur ref="left" alignment="left">
 					<div className="SideMenu">
 						<div className="SideMenu-header">
 							<img src={require('../logo.png')} className="SideMenu-logo" alt="logo" />
 						</div>
 					</div>
 					<button onClick={this.hideLeft}>hide menu</button>
-						<div>
-							{this.createMarkers(data.markers)}
-						</div>
-				</Menu>
+					<div className="full-menu">
+						{this.createMarkers(data.markers)}
+					</div>
+				</Menur>
 				<VMap position={this.state.position} />
 			</div>
 		);
 	}
 }
 
-class Menu extends React.Component {
+class Menur extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { visible: false };

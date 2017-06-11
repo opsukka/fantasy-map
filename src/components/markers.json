@@ -1,10 +1,14 @@
 {
   "markers": [
-    { "key": "marker1", "position": [11, -4.5], "children": "Yralo" },
-    { "key": "marker2", "position": [20, 37.82], "children": "Kose" },
-    { "key": "marker4", "position": [45, 21.73], "children": "Oxul" },
-    { "key": "marker5", "position": [56.8, -49], "children": "Zramita" },
-    { "key": "marker6", "position": [55.5, -108.65], "children": "Zayok" },
-    { "key": "marker7", "position": [-41.5, 38], "children": "Dia" }
+    { "key": "marker1", "position": [55.4, -5.6], "children": "Daka", "info1":"Infoa Daka kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker2", "position": [-41.5, 38], "children": "Dia", "info1":"Infoa Dia kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker3", "position": [63.3, 7.78], "children": "Driil", "info1":"Infoa Driil kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker4", "position": [20, 37.82], "children": "Kose", "info1":"Infoa Kose kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker5", "position": [33.5, -129], "children": "Oxord", "info1":"Infoa Oxordista kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker6", "position": [44.9, 21.73], "children": "Oxul", "info1":"textiä 'Oxul' kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker7", "position": [-67.8, 87.68], "children": "Trille", "info1":"Infoa Trille kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker8", "position": [11, -4.5], "children": "Yralo", "info1":"Infoa kaupungista nimeltä Yralo", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker9", "position": [56.8, -49], "children": "Zramita", "info1":"Infoa Zramita kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." },
+    { "key": "marker10", "position": [55.5, -108.65], "children": "Zayok", "info1":"Infoa Zayok kaupungista", "info2":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu." }
   ]
 }

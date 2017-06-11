@@ -35,12 +35,12 @@ export default class VMap extends React.Component {
     animate: true,
     this.state = {
       center: [0, 0],
-      players: [15, -7.5],
+      players: [55, -108.65],
       zoom: 4,
     }
     console.log(this.props.position);
   }
-  
+
   render() {
     const markers = data.markers
     const view = this.props.position

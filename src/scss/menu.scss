@@ -1,19 +1,24 @@
+$background-color:#4f0000;
+
 .menu > div {
   position: fixed;
   top: 0;
-  width: 250px;
-  top: 0.5em;
-  left: 0.5em;
-  bottom: 0.5em;
+  width: 300px;
+  /*top: 1em;
+  left: 1em;
+  bottom: 1em;*/
   padding: 0.5em;
   transition: transform ease-in-out 250ms;
   &.left {
     z-index: 10;
-    background: #4f0000;
-    transform: translateX(-300px);
+    background: #555;
+    transform: translateX(-350px);
   }
   &.visible.left {
     transform: translateX(0);
+    display: flex;
+    flex-direction: column;
+    max-height: 100%
   }
   & a {
     display: flex;
@@ -28,15 +33,17 @@
     color: #F0F0F0;
   }
   & > button {
-    width: 250px;
+    width: 300px;
+    height: 43px;
+    position: relative;
+    line-height: 0;
   }
   > .full-menu {
-    margin-top: 2.2em;
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    width: 250px;
-    height: 61%;
+    width: 300px;
+    margin-bottom: 1.1em;
   }
 }
 // logo and its container

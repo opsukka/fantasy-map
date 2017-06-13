@@ -38,7 +38,6 @@ export default class VMap extends React.Component {
       players: [55, -108.65],
       zoom: 4,
     }
-    console.log(this.props.position);
   }
 
   render() {
@@ -52,8 +51,8 @@ export default class VMap extends React.Component {
         maxZoom={5}
         minZoom={2}
         length={10}
-        animate={this.state.animate}>
-        map.panTo(new L.LatLng(view));
+        animate={true}>
+        <panTo />
         <TileLayer
           maxZoom={5}
           minZoom={2}

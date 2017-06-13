@@ -32,21 +32,27 @@ export default class VMap extends React.Component {
 
   constructor(props) {
     super(props);
+    animate: true,
     this.state = {
-      lat: 0,
-      lng: 0,
+      center: [0, 0],
+      players: [55, -108.65],
       zoom: 4,
     }
   }
 
   render() {
-    const position = [this.state.lat, this.state.lng]
-    const playerpos = [15, -7.5]
-
     const markers = data.markers
-
+    const view = this.props.position
     return (
-      <Map zoomControl={false} center={position} zoom={this.state.zoom} maxZoom={5} minZoom={2}>
+      <Map
+        zoomControl={false}
+        center={view}
+        zoom={this.state.zoom}
+        maxZoom={5}
+        minZoom={2}
+        length={10}
+        animate={true}>
+        <panTo />
         <TileLayer
           maxZoom={5}
           minZoom={2}
@@ -57,7 +63,7 @@ export default class VMap extends React.Component {
       <ZoomControl position="topright" />
         <Marker
           draggable={true}
-          position={playerpos}
+          position={this.state.players}
           ref="players">
           <Popup minWidth={50}>
             <span>

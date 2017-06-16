@@ -11,7 +11,6 @@ const SubMenu = Menu.SubMenu;
 class SideMenu extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { leftVisible: false };
 		this.showLeft = this.showLeft.bind(this);
 		this.hideLeft = this.hideLeft.bind(this);
 		this.handleClick = this.handleClick.bind(this);
@@ -20,6 +19,8 @@ class SideMenu extends React.Component {
 		this.onOpenChange = this.onOpenChange.bind(this);
 		this.getAncestorKeys = this.getAncestorKeys.bind(this);
 		this.state = {
+			leftVisible: false,
+			infoVisible: false,
       position: [0, 0],
 			current: '1',
     	openKeys: [],
@@ -83,6 +84,7 @@ class SideMenu extends React.Component {
 					<SubMenu key={marker.key} className="submenu-title" title={marker.children}>
 						<Menu.Item key="1" title="info1"><p className="menu-p">{marker.info1}</p></Menu.Item>
 						<Menu.Item key="2" title="info2"><p className="menu-p">{marker.info2}</p></Menu.Item>
+						<Menu.Item key="3" title="More-info"><span>More Info</span></Menu.Item>
 					</SubMenu>
 				</Menu>
 			</div>
@@ -93,7 +95,8 @@ class SideMenu extends React.Component {
 	render () {
 		return (
 			<div>
-				<button onClick={this.showLeft}>Menu</button>
+				<InfoScreen />
+				<button className="open-menu" onClick={this.showLeft}>Menu</button>
  				<Menur ref="left" alignment="left">
 					<div className="SideMenu">
 						<div className="SideMenu-header">
@@ -105,7 +108,6 @@ class SideMenu extends React.Component {
 						{this.createMarkers(data.markers)}
 					</div>
 				</Menur>
-				<InfoScreen />
 				<VMap position={this.state.position} />
 			</div>
 		);

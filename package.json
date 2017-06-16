@@ -11,7 +11,7 @@
   "scripts": {
     "build": "webpack",
     "sass": "node-sass src/index.scss dist/app.css",
-    "devserver": "webpack-dev-server",
+    "devserver": "webpack-dev-server --open --hot",
     "packweb": "npm run build && npm run devserver",
     "watch": "webpack --watch"
   },

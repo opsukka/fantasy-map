@@ -1,13 +1,16 @@
 $menucolor:#8b0000;
 
 .menu-p {
-  margin-left: -20px;
+  margin-left: -15px;
   flex-wrap: wrap;
   margin-right: 1em;
   line-height: 30px;
 }
 .menu-part{
-  border-bottom: 1px solid #555;
+  border-top: 1px solid #555;
+  &:first-child {
+    border-top: 1px none #fff;
+  }
 }
 .submenu-title {
   background-color: #4f0000;
@@ -46,7 +49,7 @@ $menucolor:#8b0000;
 }
 .ant-menu-item:active,
 .ant-menu-submenu-title:active {
-  background: #ecf6fd;
+  background: $background-color;
 }
 .ant-menu-submenu .ant-menu-sub {
   cursor: initial;

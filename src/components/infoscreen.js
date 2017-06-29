@@ -4,17 +4,19 @@ export default class InfoScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      infoVisible: false,
+      show: false,
     };
   }
 
   render() {
     return(
-      <div key={this.props.id} className="infoscreen">
-        <div className="info-menu">
-          <h1>{this.props.name}</h1>
-          <p>{this.props.info2}</p>
+      <div className="active-menu">
+        <div className="citymap-container">
+          <p></p>
         </div>
+        <h1 className="bigText">{this.props.name}</h1>
+        <p className="smallText">{this.props.info3}</p>
+        <button onClick={this.props.handler} >Close</button>
       </div>
     )
   }

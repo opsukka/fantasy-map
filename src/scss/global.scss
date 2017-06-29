@@ -4,7 +4,6 @@ button {
   padding: 10px 10px;
   border: 0;
   border: solid 1px #000;
-  position: absolute;
   z-index: 10;
   text-shadow: 2px 2px #000;
   font-family: serif;
@@ -14,9 +13,6 @@ button {
   }
   &:focus {
     outline: 0;
-  }
-  &:first-child {
-    margin: 1em;
   }
 }
 body {

@@ -2,42 +2,29 @@ import React from 'react';
 import '../scss/menu.scss';
 import data from './markers.json';
 import VMap from './lmap';
-import InfoScreen from './cityinfo';
+import InfoScreen from './infoscreen';
 
-// import Menu, { SubMenu, Item as MenuItem } from 'rc-menu';
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 
 class SideMenu extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { leftVisible: false };
-		this.showLeft = this.showLeft.bind(this);
-		this.hideLeft = this.hideLeft.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.createMarker = this.createMarker.bind(this);
 		this.createMarkers = this.createMarkers.bind(this);
 		this.onOpenChange = this.onOpenChange.bind(this);
 		this.getAncestorKeys = this.getAncestorKeys.bind(this);
+		this.infoClick = this.infoClick.bind(this);
+		this.handler = this.handler.bind(this);
 		this.state = {
+			condition: false,
+			leftVisible: false,
+			activeKey: null,
       position: [0, 0],
 			current: '1',
     	openKeys: [],
     }
-	}
-
-	showLeft() {
-		this.refs.left.show();
-		this.setState({ leftVisible: true });
-	}
-
-	hideLeft() {
-		this.refs.left.hide();
-		this.setState({ leftVisible: false });
-	}
-
-	handleClick() {
-		console.log(this.state.position);
 	}
 
 	createMarkers(markers) {
@@ -49,6 +36,7 @@ class SideMenu extends React.Component {
 	handleClick(e) {
     this.setState({ current: e.key });
   }
+
   onOpenChange(openKeys) {
     const state = this.state;
     const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
@@ -65,14 +53,26 @@ class SideMenu extends React.Component {
   }
   getAncestorKeys(key) {
     const map = {
-      sub11: ['sub10'],
+      sub30: ['sub29'],
     };
     return map[key] || [];
   }
 
+	handler(e) {
+		e.preventDefault()
+		this.setState({
+			activeKey:null
+		})
+	}
+
+	infoClick(e) {
+		this.setState({ activeKey: e });
+		console.log('clicked ' + this.state.activeKey);
+	}
+
 	createMarker(marker) {
 		return (
-			<div className="menu-part" onClick={() => this.setState({ position : marker.position })}>
+			<div key={marker.id} className="menu-part" onClick={() => this.setState({ position : marker.position })}>
 				<Menu
         mode="inline"
         openKeys={this.state.openKeys}
@@ -81,10 +81,14 @@ class SideMenu extends React.Component {
         onClick={this.handleClick}
       	>
 					<SubMenu key={marker.key} className="submenu-title" title={marker.children}>
-						<Menu.Item key="1" title="info1"><p className="menu-p">{marker.info1}</p></Menu.Item>
+						<Menu.Item key="1" title="info1"><p className="menu-p-h">{marker.info1}</p></Menu.Item>
 						<Menu.Item key="2" title="info2"><p className="menu-p">{marker.info2}</p></Menu.Item>
+						<Menu.Item key="3" title="moreinfo"><a href="#" className="menu-a" onClick={() => this.infoClick(marker.id)}>More info here</a></Menu.Item>
 					</SubMenu>
 				</Menu>
+				<div key={marker.id} className={this.state.activeKey === marker.id ? "active" : "hidden"} >
+					<InfoScreen name={marker.children} info3={marker.info3} handler={this.handler}/>
+				</div>
 			</div>
 		);
 	}
@@ -93,52 +97,25 @@ class SideMenu extends React.Component {
 	render () {
 		return (
 			<div>
-				<button onClick={this.showLeft}>Menu</button>
- 				<Menur ref="left" alignment="left">
-					<div className="SideMenu">
-						<div className="SideMenu-header">
-							<img src={require('../logo.png')} className="SideMenu-logo" alt="logo" />
+				<button className="open-button" onClick={ () => this.setState({ isVisible : true }) }>&#8594;</button>
+ 				<div className="menu">
+					<div className={this.state.isVisible ? "left" : "hidden-menu"}>
+						<div className="Logo">
+							<div className="Logo-header">
+								<img src={require('../logo.png')} className="Logo-logo" alt="logo" />
+							</div>
 						</div>
+						<div className="full-menu" onClick={this.handleClick}>
+							{this.createMarkers(data.markers)}
+						</div>
+						<div className="menu-footer">
+							<p>Made by opsukka</p>
+							<a href="https://github.com/opsukka/fantasy-map">GitHub repo</a>
+						</div>
+						<button className="close-button" onClick={ () => this.setState({ isVisible : false }) }>&#8592;</button>
 					</div>
-					<button onClick={this.hideLeft}>Hide menu</button>
-					<div className="full-menu" onClick={this.handleClick}>
-						{this.createMarkers(data.markers)}
-					</div>
-				</Menur>
-				<InfoScreen />
-				<VMap position={this.state.position} />
-			</div>
-		);
-	}
-}
-
-class Menur extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { visible: false };
-		this.show = this.show.bind(this);
-		this.hide = this.hide.bind(this);
-		this.isVisible = this.isVisible.bind(this);
-	}
-
-	show() {
-		this.setState({ visible: true });
-	}
-
-	hide() {
-		this.setState({ visible: false });
-	}
-
-	isVisible() {
-		return `${this.state.visible ? 'visible' : ''} ${this.props.alignment}`
-	}
-
-	render() {
-		return (
-			<div className='menu'>
-				<div className={this.isVisible()}>
-					{this.props.children}
 				</div>
+				<VMap position={this.state.position} />
 			</div>
 		);
 	}

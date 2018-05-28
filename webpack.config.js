@@ -9,6 +9,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
+  mode: 'production',
   context: path.resolve(__dirname, 'src'),
   entry: {
     app: './index.js'
@@ -18,11 +19,20 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015,presets[]=env']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015', 'env', 'stage-2']
+          }
+        }
       },
       {
-       test: /\.svg$/,
-       loader: 'svg-inline-loader'
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-inline-loader',
+          },
+        ]
       },
       {
         test: /\.png/,
@@ -41,6 +51,12 @@ module.exports = {
         })
       }
     ]
+  },
+  devServer: {
+    compress: true,
+    port: 8080,
+    hot: true,
+    open: true
   },
   output: {
     filename: 'bundle.js',

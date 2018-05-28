@@ -2,3 +2,4 @@
 .DS_store
 dist/app.css
 dist/bundle.js
+src/firebase/*

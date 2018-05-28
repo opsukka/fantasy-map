@@ -41,7 +41,7 @@ export default class VMap extends React.Component {
     this.refmarker = React.createRef(),
     this.state = {
       center: [0, 0],
-      players: [55, -108.65],
+      players: [0, 0],
       zoom: 4,
     }
   }
@@ -72,12 +72,13 @@ export default class VMap extends React.Component {
           minZoom={2}
           noWrap={true}
           attribution="&amp;copy <a href=&quot;https://github.com/opsukka&quot;>Zukop</a> contributors"
-          url="http://oskumaptiles.s3-website.eu-west-3.amazonaws.com/{z}/{x}/{y}.png"
+          url="https://oskumaptiles.s3.amazonaws.com/{z}/{x}/{y}.png"
         />
       <ZoomControl position="topright" />
         <Marker
           draggable={true}
           onDragend={this.updatePosition}
+          position={this.state.players}
           ref={this.refmarker}>
           <Popup minWidth={50}>
             <span>

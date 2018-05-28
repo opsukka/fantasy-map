@@ -14,7 +14,8 @@
     "devserver": "webpack-dev-server --open --hot",
     "packweb": "npm run build && npm run devserver",
     "watch": "webpack --watch",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "prod": "webpack --production"
   },
   "author": "Opsukka",
   "license": "ISC",

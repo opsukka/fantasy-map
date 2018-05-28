@@ -16,7 +16,7 @@ export default class InfoScreen extends React.Component {
         </div>
         <h1 className="bigText">{this.props.name}</h1>
         <p className="smallText">{this.props.info3}</p>
-        <button onClick={this.props.handler} >Close</button>
+        <button className="info-close" onClick={this.props.handler} >Close</button>
       </div>
     )
   }

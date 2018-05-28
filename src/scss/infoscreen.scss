@@ -1,4 +1,4 @@
-@import "./variables.scss";
+
 
 .active {
   background: rgba(85, 85, 85, 0.75);
@@ -34,6 +34,10 @@
     font-family: fantasy;
     color: #ccc;
   }
+}
+
+.info-close {
+  border-radius: 0.5em;
 }
 
 .hidden {

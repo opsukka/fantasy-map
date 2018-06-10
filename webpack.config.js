@@ -9,7 +9,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-  mode: 'production',
+  mode: 'production', // Change this to Development when doing dev work, and to Production when pushing to git or firebase
   context: path.resolve(__dirname, 'src'),
   entry: {
     app: './index.js'

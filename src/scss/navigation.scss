@@ -2,9 +2,18 @@
 
 .navigation-main {
     border-bottom: black solid 2px;
-    ul {
+    position: absolute;
+    z-index: 1;
+    background: rgb(223, 223, 223);
+    right: 0;
+    left: 0;
+    top: 0;
+    
+    .nav-button {
         display: flex;
+        margin: 0;
         li {
+            margin: 1rem;
             flex-direction: column;
             list-style-type: none;
             a {

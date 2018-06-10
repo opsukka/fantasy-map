@@ -51,7 +51,7 @@ export default class VMap extends React.Component {
     this.setState({
       marker: { lat, lng },
     })
-    //this.refmarker.current.leafletElement.getPopup().setContent('Clicked ' + this.refmarker.current.leafletElement.getLatLng())
+    this.refmarker.current.leafletElement.getPopup().setContent('Clicked ' + this.refmarker.current.leafletElement.getLatLng())
   }
 
   render() {
@@ -72,7 +72,7 @@ export default class VMap extends React.Component {
           minZoom={2}
           noWrap={true}
           attribution="&amp;copy <a href=&quot;https://github.com/opsukka&quot;>Zukop</a> contributors"
-          url="https://oskumaptiles.s3.amazonaws.com/{z}/{x}/{y}.png"
+          url="https://firebasestorage.googleapis.com/v0/b/fantasy-map.appspot.com/o/valcia%2F{z}%2F{x}%2F{y}.png?alt=media"
         />
       <ZoomControl position="topright" />
         <Marker
@@ -86,7 +86,7 @@ export default class VMap extends React.Component {
             </span>
           </Popup>
         </Marker>
-        <MyMarkersList markers={markers} />
+        <MyMarkersList markers={ markers } />
       </Map>
     )
   }

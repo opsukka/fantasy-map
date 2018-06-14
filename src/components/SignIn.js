@@ -7,10 +7,9 @@ import { auth } from '../firebase';
 import * as routes from '../constants/routes';
 
 const SignInPage = ({ history }) =>
-  <div>
-    <h1>SignIn</h1>
+  <div className="login-body">
+    <h1>Welcome Back!</h1>
     <SignInForm history={history} />
-    <PasswordForgetLink />
     <SignUpLink />
   </div>
 
@@ -29,6 +28,29 @@ class SignInForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+
+    this.handleLoginKeyUp = this.keyUpHandler.bind(this, 'login');
+    this.handlePwdKeyUp = this.keyUpHandler.bind(this, 'pwd');
+  }
+
+  keyUpHandler(refName, e) {
+    if (refName === 'login') {
+      var emailinpt = document.getElementById("singin-input");
+      var emaillbl = document.getElementById("singin-label");
+
+      emaillbl.classList.add("active");
+      if (emailinpt.value === "") {
+        emaillbl.classList.remove("active");
+      }
+    } if (refName === 'pwd') {
+      var pwinput = document.getElementById("pw-input");
+      var pwlbl = document.getElementById("pwd-label");
+
+      pwlbl.classList.add("active");
+      if  (pwinput.value === "") {
+        pwlbl.classList.remove("active");
+      }
+    }
   }
 
   onSubmit = (event) => {
@@ -66,18 +88,27 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
+        <div className="field-wrap">
+          <label id="singin-label" >Email Address</label>
+          <input
+            value={email}
+            onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+            type="text"
+            onKeyUp={this.handleLoginKeyUp}
+            id="singin-input"
+          />
+        </div>
+        <div className="field-wrap">
+          <label id="pwd-label">Password</label>
+          <input
+            value={password}
+            onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+            type="password"
+            onKeyUp={this.handlePwdKeyUp}
+            id="pw-input"
+          />
+        </div>
+        <PasswordForgetLink />
         <button disabled={isInvalid} type="submit">
           Sign In
         </button>

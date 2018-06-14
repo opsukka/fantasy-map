@@ -1,32 +1,46 @@
 @import "./variables.scss";
 
 .navigation-main {
-    border-bottom: black solid 2px;
-    position: absolute;
-    z-index: 1;
-    background: rgb(223, 223, 223);
-    right: 0;
-    left: 0;
-    top: 0;
-    
-    .nav-button {
-        display: flex;
-        margin: 0;
-        li {
-            margin: 1rem;
-            flex-direction: column;
-            list-style-type: none;
-            a {
-                padding-left: 1em;
-            }
+  z-index: 1;
+  background: $main-bg;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  .nav-button {
+    display: flex;
+    margin: 0;
+
+    li {
+      flex-direction: column;
+      list-style-type: none;
+
+      a {
+        display: block;
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        font-weight: $bold;
+        letter-spacing: 0.1em;
+        background: $main;
+        color: $white;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        -webkit-appearance: none;
+        padding: 1rem;
+
+        &:hover,
+        &:focus {
+          background: $main-dark;
         }
+      }
     }
+  }
 }
 
 .navigation-divider {
-    border: 0; 
-    height: 1px; 
-    background: #333; 
-    background-image: 
-    linear-gradient(to right, #ccc, #333, #ccc);
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

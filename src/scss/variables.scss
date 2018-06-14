@@ -1,14 +1,29 @@
 $background-color:#fff;
-$footer-color:#5E0087;
-$dark-violet: #5E0087;
+$footer-color:#5e0087;
+$dark-violet: #5e0087;
 $a-color:#000;
 $grey-color: #555;
 $dark-red: #4f0000;
 $menucolor: #222;
-$sky-color: #ffe221;
+$sky-color: #000;
 
 $menu-width:300px;
-
+$body-bg: #2f2c2f;
 
 //font properties
 $global-font-size: 16px;
+
+$main-bg: #13232f;
+$white: #fff;
+
+$main: #1ab188;
+$main-light: lighten($main, 5%);
+$main-dark: darken($main, 20%);
+
+$gray-light: #a0b3b0;
+$gray: #ddd;
+
+$thin: 300;
+$normal: 400;
+$bold: 600;
+$br: 4px;

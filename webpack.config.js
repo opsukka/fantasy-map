@@ -1,18 +1,22 @@
-const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const LiveReloadPlugin = require('webpack-livereload-plugin');
+const merge = require('webpack-merge')
 
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].css",
-    disable: process.env.NODE_ENV === "development"
-});
+// Plugins
+const LiveReloadPlugin = require('webpack-livereload-plugin')
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
-module.exports = {
-  mode: 'production', // Change this to Development when doing dev work, and to Production when pushing to git or firebase
-  context: path.resolve(__dirname, 'src'),
-  entry: {
-    app: './index.js'
+const baseEntries = [
+  { theme: `./index.js` } // Main theme entry
+]
+
+const baseConfiguration = {
+  context: path.resolve(__dirname, 'src/'),
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
   module: {
       rules: [
@@ -26,44 +30,91 @@ module.exports = {
           }
         }
       },
+      // CSS
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          {
+            loader: 'resolve-url-loader'
+          },
+          'postcss-loader'
+        ]
+      },
+      // Sass
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
       {
         test: /\.svg$/,
         use: [
           {
-            loader: 'svg-inline-loader',
+            loader: 'svg-sprite-loader',
+            options: {
+              extract: true
+            }
           },
+          'svgo-loader'
         ]
       },
       {
-        test: /\.png/,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.scss$/,
-        use: extractSass.extract({
-            use: [{
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }],
-            // use style-loader in development
-            fallback: "style-loader"
-        })
+        test: /\.(gif|png|jpe?g)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: '/dist/assets/images',
+              outputPath: 'images/'
+            }
+          },
+          'image-webpack-loader'
+        ]
       }
     ]
   },
   devServer: {
-    compress: true,
-    port: 8080,
+    //compress: true,
+    port: 8000,
     hot: true,
     open: true
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist/assets/')
   },
   plugins: [
-    extractSass,
-    new LiveReloadPlugin()
+    // Extract CSS to its own file
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id}.css'
+    }),
+
+    // Create SVG sprite
+    new SpriteLoaderPlugin(),
+
+    // Livereload plugin
+    //new LiveReloadPlugin()
   ]
-};
+}
+
+const exportArray = [...baseEntries.map((entry) => {
+  return merge(baseConfiguration, {
+    entry
+  })
+})]
+
+module.exports = exportArray

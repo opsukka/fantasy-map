@@ -1,5 +1,5 @@
 import React from 'react';
-import '../scss/menu.scss';
+//import '../scss/menu.scss';
 import data from './markers.json';
 import VMap from './lmap';
 import InfoScreen from './infoscreen';
@@ -97,12 +97,12 @@ class SideMenu extends React.Component {
 	render () {
 		return (
 			<div>
-				<button className="open-button" onClick={ () => this.setState({ isVisible : true }) }>&#8594;</button>
+				<button className="open-button" onClick={ () => this.setState({ isVisible : true }) }><span className="glyphicon glyphicon-arrow-right"></span></button>
  				<div className="menu">
 					<div className={this.state.isVisible ? "left" : "hidden-menu"}>
 						<div className="Logo">
 							<div className="Logo-header">
-								<img src={require('../logo.png')} className="Logo-logo" alt="logo" />
+								<img src={require('../images/logo.png')} className="Logo-logo" alt="logo" />
 							</div>
 						</div>
 						<div className="full-menu" onClick={this.handleClick}>
@@ -112,7 +112,7 @@ class SideMenu extends React.Component {
 							<p>Made by opsukka</p>
 							<a href="https://github.com/opsukka/fantasy-map">GitHub repo</a>
 						</div>
-						<button className="close-button" onClick={ () => this.setState({ isVisible : false }) }>&#8592;</button>
+						<button className="close-button" onClick={ () => this.setState({ isVisible : false }) }><span className="glyphicon glyphicon-arrow-left"></span></button>
 					</div>
 				</div>
 				<VMap position={this.state.position} />

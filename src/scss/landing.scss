@@ -1,8 +1,10 @@
 @import "./variables.scss";
 
 .landing {
-    display: flex;
-    .landing-content {
-        margin-top: 3rem;
-    }
+  padding-top: 50px;
+  display: flex;
+
+  .landing-content {
+    margin-top: 3rem;
+  }
 }

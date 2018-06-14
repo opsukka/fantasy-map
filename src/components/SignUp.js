@@ -8,8 +8,8 @@ import { auth, db } from '../firebase';
 import * as routes from '../constants/routes';
 
 const SignUpPage = ({ history }) =>
-  <div>
-    <h1>SignUp</h1>
+  <div className="singup-body">
+    <h1>Sign Up</h1>
     <SignUpForm history={history} />
   </div>
 
@@ -30,6 +30,11 @@ class SignUpForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+
+    this.handleNameKeyUp = this.keyUpHandler.bind(this, 'name');
+    this.handleEmailKeyUp = this.keyUpHandler.bind(this, 'email');
+    this.handlePwdKeyUp = this.keyUpHandler.bind(this, 'pwd');
+    this.handlePwdCKeyUp = this.keyUpHandler.bind(this, 'pwdc');
   }
 
   onSubmit = (event) => {
@@ -64,6 +69,45 @@ class SignUpForm extends Component {
     event.preventDefault();
   }
 
+  keyUpHandler(refName, e) {
+    if (refName === 'name') {
+      var singinput = document.getElementById("name-input");
+      var singinlbl = document.getElementById("name-label");
+
+      singinlbl.classList.add("active");
+      if (singinput.value === "") {
+        singinlbl.classList.remove("active");
+      }
+    }
+    if (refName === 'email') {
+      var emailinput = document.getElementById("email-input");
+      var emaillbl = document.getElementById("email-label");
+
+      emaillbl.classList.add("active");
+      if (emailinput.value === "") {
+        emaillbl.classList.remove("active");
+      }
+    }
+    if (refName === 'pwd') {
+      var pwinput = document.getElementById("pw-input");
+      var pwlbl = document.getElementById("pwd-label");
+
+      pwlbl.classList.add("active");
+      if  (pwinput.value === "") {
+        pwlbl.classList.remove("active");
+      }
+    }
+    if (refName === 'pwdc') {
+      var pwcinput = document.getElementById("pwc-input");
+      var pwclbl = document.getElementById("pwdc-label");
+
+      pwclbl.classList.add("active");
+      if  (pwcinput.value === "") {
+        pwclbl.classList.remove("active");
+      }
+    }
+  }
+
   render() {
     const {
       username,
@@ -81,30 +125,46 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
+        <div className="field-wrap">
+        <label id="name-label">Full Name</label>
         <input
           value={username}
           onChange={event => this.setState(updateByPropertyName('username', event.target.value))}
           type="text"
-          placeholder="Full Name"
+          onKeyUp={this.handleNameKeyUp}
+          id="name-input"
         />
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={passwordOne}
-          onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={passwordTwo}
-          onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
-          type="password"
-          placeholder="Confirm Password"
-        />
+        </div>
+        <div className="field-wrap">
+          <label id="email-label">Email Address</label>
+          <input
+            value={email}
+            onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+            type="text"
+            onKeyUp={this.handleEmailKeyUp}
+            id="email-input"
+          />
+        </div>
+        <div className="field-wrap">
+          <label id="pwd-label">Password</label>
+          <input
+            value={passwordOne}
+            onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
+            type="password"
+            onKeyUp={this.handlePwdKeyUp}
+            id="pw-input"
+          />
+        </div>
+        <div className="field-wrap">
+          <label id="pwdc-label">Confirm Password</label>
+          <input
+            value={passwordTwo}
+            onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
+            type="password"
+            onKeyUp={this.handlePwdCKeyUp}
+            id="pwc-input"
+          />
+        </div>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
@@ -116,7 +176,7 @@ class SignUpForm extends Component {
 }
 
 const SignUpLink = () =>
-  <p>
+  <p className="no-account">
     Don't have an account?
     {' '}
     <Link to={routes.SIGN_UP}>Sign Up</Link>

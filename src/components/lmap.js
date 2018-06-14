@@ -27,7 +27,7 @@ const MyMarkersList = ({ markers }) => {
   const items = markers.map(({ key, position, children }) => (
     <MyPopupMarker key={key} position={position} icon={L.icon} children={children} />
   ))
-  return <div style={{ display: 'none' }}>{items}</div>
+  return <div style={{ display: 'none', }}>{items}</div>
 }
 MyMarkersList.propTypes = {
   markers: PropTypes.array.isRequired,

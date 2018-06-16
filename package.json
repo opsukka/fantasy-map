@@ -11,7 +11,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "sass": "node-sass src/index.scss dist/app.css",
-    "devserver": "webpack-dev-server --mode development --open --hot",
+    "devserver": "webpack-dev-server --mode development --hot --inline --colors",
     "packweb": "npm run build:dev && npm run devserver",
     "watch": "webpack --mode development --watch",
     "build:dev": "webpack --mode development",

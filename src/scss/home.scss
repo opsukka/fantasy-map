@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+.home-body {
+  color: $white;
+  margin: 2em auto;
+  display: flex;
+  justify-content: center;
+
+  .home-body {
+    padding: 1em;
+  }
+}

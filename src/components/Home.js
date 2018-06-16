@@ -18,11 +18,13 @@ class HomePage extends Component {
     const { users } = this.props;
 
     return (
-      <div>
-        <h1>Home</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
+      <div className="home-body">
+        <div className="home-content">
+          <h1>Home</h1>
+          <p>The Home Page is accessible by every signed in user.</p>
 
-        { !!users && <UserList users={users} /> }
+          { !!users && <UserList users={users} /> }
+        </div>
       </div>
     );
   }

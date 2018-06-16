@@ -1,6 +1,6 @@
-const path = require('path');
+const path = require('path')
 const merge = require('webpack-merge')
-
+const webpack = require('webpack')
 // Plugins
 const LiveReloadPlugin = require('webpack-livereload-plugin')
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
@@ -77,7 +77,7 @@ const baseConfiguration = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: '/dist/assets/images',
+              publicPath: '/assets/images',
               outputPath: 'images/'
             }
           },
@@ -87,8 +87,8 @@ const baseConfiguration = {
     ]
   },
   devServer: {
-    //compress: true,
-    port: 8000,
+    compress: true,
+    port: 8080,
     hot: true,
     open: true
   },
@@ -106,8 +106,8 @@ const baseConfiguration = {
     // Create SVG sprite
     new SpriteLoaderPlugin(),
 
-    // Livereload plugin
-    //new LiveReloadPlugin()
+    // Livereload
+    new LiveReloadPlugin(),
   ]
 }
 

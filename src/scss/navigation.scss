@@ -9,9 +9,11 @@
 
   .nav-button {
     display: flex;
+    justify-content: center;
     margin: 0;
+    padding: 0;
 
-    li {
+    .nav-item {
       flex-direction: column;
       list-style-type: none;
 

@@ -6,7 +6,8 @@ module.exports = {
       'ignoreAtRules': [
         'mixin',
         'extends',
-        'ignores'
+        'ignores',
+        'dist/'
       ]
     }]
   }

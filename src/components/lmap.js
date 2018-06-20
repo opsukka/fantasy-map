@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup, ZoomControl, PropTypes as MapPropTypes } from 'react-leaflet';
 import L from 'leaflet';
 
+import { db } from '../firebase/firebase.js';
+
 import data from './markers.json';
 
 
@@ -27,8 +29,9 @@ const MyMarkersList = ({ markers }) => {
   const items = markers.map(({ key, position, children }) => (
     <MyPopupMarker key={key} position={position} icon={L.icon} children={children} />
   ))
-  return <div style={{ display: 'none', }}>{items}</div>
+  return <div style={{ display: 'none',}}>{items}</div>
 }
+
 MyMarkersList.propTypes = {
   markers: PropTypes.array.isRequired,
 }
@@ -46,11 +49,22 @@ export default class VMap extends React.Component {
     }
   }
 
+  componentDidMount() {
+		db.ref().child(`position/players`).on('value', snap => {
+			this.setState({
+        players: snap.val()
+      });
+		});
+	}
+
   updatePosition = () => {
     const { lat, lng } = this.refmarker.current.leafletElement.getLatLng()
-    this.setState({
-      marker: { lat, lng },
+    db.ref().child(`position/players`).set({
+      lat, lng
     })
+    // this.setState({
+    //   marker: { lat, lng },
+    // })
     this.refmarker.current.leafletElement.getPopup().setContent('Clicked ' + this.refmarker.current.leafletElement.getLatLng())
   }
 

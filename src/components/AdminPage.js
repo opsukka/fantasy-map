@@ -3,12 +3,19 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import withAuthorization from './Session/withAuthorization';
-import { auth, db } from '../firebase';
+import { db } from '../firebase';
 import firebase from 'firebase';
 
-class HomePage extends Component {
+class AdminPage extends Component {
+  constructor(props) {
+    super(props);
+    this.userId = this.userId.bind(this);
+  }
+
   componentDidMount() {
     const { onSetUsers } = this.props;
+    const userId = firebase.auth().currentUser.uid;
+    console.log(userId);
 
     db.onceGetUsers().then(snapshot =>
       onSetUsers(snapshot.val())
@@ -18,12 +25,10 @@ class HomePage extends Component {
   render() {
     const { users } = this.props;
     return (
-      <div className="home-body">
-        <div className="home-content">
-          <h1>Home</h1>
+      <div className="admin-body">
+        <div className="admin-content">
+          <h1>Admin</h1>
           <p>The Home Page is accessible by every signed in user.</p>
-
-          { !!users && <UserList users={users} /> }
         </div>
       </div>
     );
@@ -39,7 +44,7 @@ const UserList = ({ users }) =>
       <div key={key}>{users[key].username}</div>
     )}
   </div>
-
+  
 const mapStateToProps = (state) => ({
   users: state.userState.users,
 });
@@ -48,9 +53,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSetUsers: (users) => dispatch({ type: 'USERS_SET', users }),
 });
 
-const authCondition = (authUser) => !!authUser;
+const authCondition = (authUser) => !!authUser && firebase.database().ref().child(`users/`+ userId +`/role`) === "admin";
 
 export default compose(
   withAuthorization(authCondition),
-  connect(mapStateToProps, mapDispatchToProps)
-)(HomePage);
+  connect(mapStateToProps, mapDispatchToProps)  
+)(AdminPage);

@@ -36,7 +36,7 @@
   color: #fff;
   background: #13232f;
   line-height: 46px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: $global-font-family;
 }
 
 .ant-menu-hidden {
@@ -109,7 +109,7 @@
 .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
 .ant-menu-submenu-active,
 .ant-menu-submenu-title:hover {
-  color: blueviolet;
+  color: $main;
 }
 
 .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {

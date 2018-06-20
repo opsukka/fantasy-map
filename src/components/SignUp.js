@@ -20,6 +20,7 @@ const updateByPropertyName = (propertyName, value) => () => ({
 const INITIAL_STATE = {
   username: '',
   email: '',
+  role: 'user',
   passwordOne: '',
   passwordTwo: '',
   error: null,
@@ -41,6 +42,7 @@ class SignUpForm extends Component {
     const {
       username,
       email,
+      role,
       passwordOne,
     } = this.state;
 
@@ -52,7 +54,7 @@ class SignUpForm extends Component {
       .then(authUser => {
 
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.uid, username, email)
+        db.doCreateUser(authUser.user.uid, username, email, role)
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
             history.push(routes.HOME);
@@ -60,7 +62,6 @@ class SignUpForm extends Component {
           .catch(error => {
             this.setState(updateByPropertyName('error', error));
           });
-
       })
       .catch(error => {
         this.setState(updateByPropertyName('error', error));
@@ -112,6 +113,7 @@ class SignUpForm extends Component {
     const {
       username,
       email,
+      role,
       passwordOne,
       passwordTwo,
       error,

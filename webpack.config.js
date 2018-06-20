@@ -77,7 +77,7 @@ const baseConfiguration = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: '/assets/images',
+              publicPath: '/dist/assets/images',
               outputPath: 'images/'
             }
           },

@@ -11,7 +11,8 @@ const withAuthorization = (condition) => (Component) => {
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
-          this.props.history.push(routes.SIGN_IN);
+          // If the authorizaion fails go to sign in page
+          this.props.history.push(routes.LANDING);
         }
       });
     }

@@ -3,3 +3,12 @@
 dist/assets
 src/firebase
 map
+src/components/Home\.js
+
+src/components/markers\.json
+
+src/components/menu\.js
+
+src/components/Session/withAuthentication\.js
+
+src/index\.js

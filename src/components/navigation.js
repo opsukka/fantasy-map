@@ -19,6 +19,7 @@ const NavigationAuth = () =>
     <li className="nav-item"><Link to={routes.HOME}>Home</Link></li>
     <li className="nav-item"><Link to={routes.ACCOUNT}>Account</Link></li>
     <li className="nav-item"><Link to={routes.MAP1}>World Map</Link></li>
+    <li className="nav-item"><Link to={routes.ADMINPAGE}>Admin</Link></li>
     <li className="nav-item"><SignOutButton /></li>
   </ul>
 

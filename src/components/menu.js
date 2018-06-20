@@ -4,7 +4,8 @@ import data from './markers.json';
 import VMap from './lmap';
 import InfoScreen from './infoscreen';
 
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
+
 const SubMenu = Menu.SubMenu;
 
 class SideMenu extends React.Component {

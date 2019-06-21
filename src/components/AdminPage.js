@@ -3,23 +3,18 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import withAuthorization from './Session/withAuthorization';
-import { db } from '../firebase';
+import { db } from '../firebase/firebase.js';
 import firebase from 'firebase';
 
 class AdminPage extends Component {
   constructor(props) {
-    super(props);
-    this.userId = this.userId.bind(this);
+    super();
   }
 
   componentDidMount() {
     const { onSetUsers } = this.props;
     const userId = firebase.auth().currentUser.uid;
     console.log(userId);
-
-    db.onceGetUsers().then(snapshot =>
-      onSetUsers(snapshot.val())
-    );
   }
 
   render() {
@@ -53,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetUsers: (users) => dispatch({ type: 'USERS_SET', users }),
 });
 
-const authCondition = (authUser) => !!authUser && firebase.database().ref().child(`users/`+ userId +`/role`) === "admin";
+const authCondition = (authUser) => !!authUser && authUser.role === 'admin';
 
 export default compose(
   withAuthorization(authCondition),
